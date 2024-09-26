@@ -1,18 +1,21 @@
 from gspread import authorize
 from google.oauth2.service_account import Credentials
 from uuid import uuid4
-from dotenv import dotenv_values
 from functools import lru_cache
+from dotenv import load_dotenv
+from pathlib import Path
+from os import getenv
 
-env_variables = dotenv_values()
+env_file_path = Path('private/.env')
+load_dotenv(env_file_path)
 
-gsheets_scopes = [env_variables.get('GSHEETS_SCOPES')]
+gsheets_scopes = [getenv('GSHEETS_SCOPES')]
 gsheets_credentials = Credentials.from_service_account_file(
-    env_variables.get('GSHEETS_CREDENTIALS'), scopes=gsheets_scopes)
+    getenv('GSHEETS_CREDENTIALS'), scopes=gsheets_scopes)
 
 gsheets = authorize(gsheets_credentials)
 
-gsheets_workbook_id = env_variables.get('GSHEETS_WORKBOOK_ID')
+gsheets_workbook_id = getenv('GSHEETS_WORKBOOK_ID')
 
 workbook = gsheets.open_by_key(gsheets_workbook_id)
 
@@ -37,6 +40,7 @@ def getAllPosts():
     _POSTS = worksheet_posts.get_all_records()
     return _POSTS if len(_POSTS) > 0 else None
 
+
 @lru_cache(maxsize=128)
 def getAllPostsByUser(email: str):
     global _POSTS
@@ -49,6 +53,7 @@ def getAllPostsExcept(email: str):
     global _POSTS
     getAllPosts()
     return [post for post in _POSTS if post['email'] != email]
+
 
 def getPostByUUID(uuid: str):
     cell = _postExists(uuid)
@@ -145,7 +150,7 @@ def addNewUser(email: str, username: str):
     }
 
 
-# debug
+# for debug purposes
 
 # addNewUser('y7l2X@example.com', 'test1')
 # addNewUser('e@mail.com', 'homosapiens')
