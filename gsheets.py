@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 from pathlib import Path
 from os import getenv
 
-env_file_path = Path('private/.env')
+env_file_path = Path('/etc/secrets/.env')
 load_dotenv(env_file_path)
 
 gsheets_scopes = [getenv('GSHEETS_SCOPES')]
