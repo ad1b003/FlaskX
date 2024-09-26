@@ -1,20 +1,20 @@
 from flask import Flask, redirect, render_template, request, session, url_for
-from dotenv import dotenv_values, load_dotenv
+# from dotenv import dotenv_values, load_dotenv
 from authlib.integrations.flask_client import OAuth
 import gsheets
-from pathlib import Path
-from os import getenv
+# from pathlib import Path
+import os
 
 
 app = Flask(__name__)
 
-load_dotenv(Path('/etc/secrets/.env'))
+# load_dotenv(Path('/etc/secrets/.env'))
 
 app_config = {
-    'OAUTH2_CLIENT_ID': getenv('OAUTH2_CLIENT_ID'),
-    'OAUTH2_CLIENT_SECRET': getenv('OAUTH2_CLIENT_SECRET'),
-    'OAUTH2_META_URL': getenv('OAUTH2_META_URL'),
-    'SECRET_KEY': getenv('FLASK_SECRET_KEY'),
+    'OAUTH2_CLIENT_ID': os.environ.get('OAUTH2_CLIENT_ID'),
+    'OAUTH2_CLIENT_SECRET': os.environ.get('OAUTH2_CLIENT_SECRET'),
+    'OAUTH2_META_URL': os.environ.get('OAUTH2_META_URL'),
+    'SECRET_KEY': os.environ.get('FLASK_SECRET_KEY'),
 }
 
 app.secret_key = app_config['SECRET_KEY']
