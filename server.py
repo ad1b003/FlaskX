@@ -8,7 +8,7 @@ from os import getenv
 
 app = Flask(__name__)
 
-load_dotenv(Path('private/.env'))
+load_dotenv(Path('/etc/secrets/.env'))
 
 app_config = {
     'OAUTH2_CLIENT_ID': getenv('OAUTH2_CLIENT_ID'),
