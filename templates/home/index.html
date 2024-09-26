@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% import "_macros.html" as macros %}
+
+{% block content %}
+    {% if session %}
+        <marquee behavior="scroll" direction="left">
+            <h3>Welcome, {{ session['userinfo']['name'] }}!</h3>
+        </marquee>
+        <article class="grid">
+                <img style="border-radius: 50%;" src="{{ session['userinfo']['picture'] }}" alt="{{ session['userinfo']['name'] }}">
+            <p>
+                <strong>Firstname:</strong> <em>{{ session['userinfo']['given_name'] }}</em><br>
+                <strong>Lastname:</strong> <em>{{ session['userinfo']['family_name'] }}</em>
+            </p>
+            <p>
+                <strong>Email:</strong> <em>{{ session['userinfo']['email'] }}</em><br>
+                <strong>Verified:</strong> <em>{{ session['userinfo']['email_verified'] }}</em>
+            </p>
+            <a href="{{ url_for('signOut') }}" role="button" class="pico-background-red-500">Sign out</a>
+        </article>
+        <hr>
+        <article class="mt-1" hx-target="next div" hx-swap="beforebegin">
+            <form class="children-mb-1" hx-on::after-request="this.reset()">
+                <input type="text" name="title" required placeholder="Title">
+                <input type="text" name="content" required placeholder="Content">
+                <div class="grid">
+                    <button type="submit" class="pico-background-jade-500" hx-post="{{ url_for('addPost') }}">Post</button>
+                    <button type="reset" class="secondary">Clear</button>
+                </div>
+            </form>
+        </article>
+        <hr>
+        <h2>your rants</h2>
+        <div>
+            {% for post in posts|reverse %}
+                {{ macros.postBlock(post) }}
+            {% endfor %}
+        </div>
+    {% else %}
+        {{ macros.signInBlock() }}
+    {% endif %}
+{% endblock %}

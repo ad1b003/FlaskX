@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% import "_macros.html" as _macros %}
+
+{% block content %}
+    <article>
+        <header>
+            <h1>rants</h1>
+        </header>
+        <section>
+            {% for post in posts|reverse %}
+                {{ _macros.postBlock(post) }}
+            {% endfor %}
+        </section>
+    </article>
+{% endblock %}

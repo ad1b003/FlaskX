@@ -1,0 +1,46 @@
+{% macro head() -%}
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="color-scheme" content="light dark" />
+        <!-- Pico CSS -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='pico.sand.min.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='pico.colors.min.css') }}">
+        <!-- alpine.js -->
+        <script src="{{ url_for('static', filename='htmx.min.js') }}"></script>
+        <!-- own-style -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+        <title>FlaskX!</title>
+    </head>
+{%- endmacro %}
+
+{% macro navbar() -%}
+    <nav class="container-fluid">
+        <ul>
+            <li><strong><a href="{{ url_for('home') }}" class="contrast">flaskX</a></strong></li>
+          </ul>
+        <ul>
+            <li><a href="{{ url_for('home') }}" class="contrast">home</a></li>
+            <li><a href="{{ url_for('posts') }}" class="contrast">rants</a></li>
+            <li><a href="{{ url_for('users') }}" class="contrast">others</a></li>
+        </ul>
+    </nav>
+{%- endmacro %}
+
+{% macro postBlock(post) -%}
+    <article id="all-posts" hx-get="{{ url_for('showPost', post_id=post.uuid) }}"
+        hx-trigger="load"
+        hx-target="this"
+        hx-swap="outerHTML">
+    </article>
+{%- endmacro %}
+
+{% macro signInBlock() -%}
+    <article>
+        <header>You need to sign in first</header>
+            <a href="{{ url_for('signIn') }}" class="pico-background-jade-500" role="button" style="font-size: xx-large;">
+                Sign in with Google
+            </a>
+    </article>
+{%- endmacro %}

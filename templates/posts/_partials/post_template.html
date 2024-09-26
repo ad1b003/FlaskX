@@ -1,0 +1,14 @@
+<article class="mt-1" hx-target="this" hx-swap="outerHTML">
+    <header>
+        <h5 class="post-title">{{ post.title }}</h5>
+        {% if session['userinfo']['email'] != post.email %}
+            <small>by <a href="mailto:{{ post.email }}">{{ post.username }}</a></small>
+        {% endif %}
+    </header>
+    <p class="post-content">{{ post.content }}</p>
+    {% if session['userinfo']['email'] == post.email %}
+        <footer>
+            <button class="contrast" hx-get="{{ url_for('editPost', post_id=post.uuid) }}" {{ '' if session else 'disabled' }}>Edit Post</button>
+        </footer>
+    {% endif %}
+</article>

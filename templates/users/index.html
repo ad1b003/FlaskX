@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% import "_macros.html" as _macros %}
+
+{% block content %}
+    <article>
+        <header>
+            <h1>others</h1>
+        </header>
+        <section>
+            {% for user in users %}
+               <ul>
+                   <li class="grid">
+                       <h3>{{ user.username }}</h3>
+                       <a href="mailto:{{ user.email }}" role="button"class="secondary">connect!</a>
+                   </li>
+                </ul> 
+            {% endfor %}
+        </section>
+    </article>
+{% endblock %}
