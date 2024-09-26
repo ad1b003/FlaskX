@@ -114,3 +114,6 @@ def users():
         return redirect(url_for('home'))
     all_users = gsheets.getAllUsers()
     return render_template("users/index.html", users=all_users, session=session.get('user'),)
+
+if __name__ == "__main__":
+    app.run()
