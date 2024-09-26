@@ -2,20 +2,20 @@ from gspread import authorize
 from google.oauth2.service_account import Credentials
 from uuid import uuid4
 from functools import lru_cache
-from dotenv import load_dotenv
-from pathlib import Path
-from os import getenv
+# from dotenv import load_dotenv
+# from pathlib import Path
+import os
 
-env_file_path = Path('/etc/secrets/.env')
-load_dotenv(env_file_path)
+# env_file_path = Path('/etc/secrets/.env')
+# load_dotenv(env_file_path)
 
-gsheets_scopes = [getenv('GSHEETS_SCOPES')]
+gsheets_scopes = [os.environ.get('GSHEETS_SCOPES')]
 gsheets_credentials = Credentials.from_service_account_file(
-    getenv('GSHEETS_CREDENTIALS'), scopes=gsheets_scopes)
+    os.environ.get('GSHEETS_CREDENTIALS'), scopes=gsheets_scopes)
 
 gsheets = authorize(gsheets_credentials)
 
-gsheets_workbook_id = getenv('GSHEETS_WORKBOOK_ID')
+gsheets_workbook_id = os.environ.get('GSHEETS_WORKBOOK_ID')
 
 workbook = gsheets.open_by_key(gsheets_workbook_id)
 
