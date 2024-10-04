@@ -3,33 +3,53 @@
 
 {% block content %}
     {% if session %}
+        <dialog id="post-dialog">
+            <article class="mt-1" hx-target="next div" hx-swap="beforebegin">
+                <header>
+                    <nav>
+                        <ul>
+                            <li>
+                                <h1>start ranting</h1>
+                            </li>
+                        </ul>
+                        <ul>
+                            <li><button class="gg-close" onclick="document.getElementById('post-dialog').close();"></button></li>
+                        </ul>
+                    </nav>
+                </header>
+                <form class="children-mb-1" hx-on::after-request="this.reset()">
+                    <input type="text" name="title" required placeholder="Title">
+                    <input type="text" name="content" required placeholder="Content">
+                    <div class="grid">
+                        <button type="submit" class="pico-background-jade-500" hx-post="{{ url_for('addPost') }}">Post</button>
+                        <button type="reset" class="secondary">Clear</button>
+                    </div>
+                </form>
+            </article>
+        </dialog>
         <marquee behavior="scroll" direction="left">
             <h3>Welcome, {{ session['userinfo']['name'] }}!</h3>
         </marquee>
         <article class="grid">
-                <img style="border-radius: 50%;" src="{{ session['userinfo']['picture'] }}" alt="{{ session['userinfo']['name'] }}">
-            <p>
-                <strong>Firstname:</strong> <em>{{ session['userinfo']['given_name'] }}</em><br>
-                <strong>Lastname:</strong> <em>{{ session['userinfo']['family_name'] }}</em>
-            </p>
-            <p>
-                <strong>Email:</strong> <em>{{ session['userinfo']['email'] }}</em><br>
-                <strong>Verified:</strong> <em>{{ session['userinfo']['email_verified'] }}</em>
-            </p>
-            <a href="{{ url_for('signOut') }}" role="button" class="pico-background-red-500">Sign out</a>
+                <header>
+                    <img style="border-radius: 50%;" src="{{ session['userinfo']['picture'] }}" alt="{{ session['userinfo']['name'] }}">
+                    <p>
+                        <strong>Firstname:</strong> <em>{{ session['userinfo']['given_name'] }}</em><br>
+                        <strong>Lastname:</strong> <em>{{ session['userinfo']['family_name'] }}</em>
+                    </p>
+                </header>
+            <div class="m-1 flex column centre">
+                <p><strong>Email:</strong> <em>{{ session['userinfo']['email'] }}</em></p>
+                <p><strong>Verified:</strong> <em>{{ session['userinfo']['email_verified'] }}</em></p>
+            </div>
+            <footer>
+                <p class="grid">
+                    <button class="pico-background-jade-500" onclick="document.getElementById('post-dialog').showModal();">something new?</button>
+                    <a href="{{ url_for('signOut') }}" role="button" class="pico-background-red-500">Sign out</a>
+                </p>
+            </footer>
         </article>
-        <hr>
-        <article class="mt-1" hx-target="next div" hx-swap="beforebegin">
-            <form class="children-mb-1" hx-on::after-request="this.reset()">
-                <input type="text" name="title" required placeholder="Title">
-                <input type="text" name="content" required placeholder="Content">
-                <div class="grid">
-                    <button type="submit" class="pico-background-jade-500" hx-post="{{ url_for('addPost') }}">Post</button>
-                    <button type="reset" class="secondary">Clear</button>
-                </div>
-            </form>
-        </article>
-        <hr>
+
         <h2>your rants</h2>
         <div>
             {% for post in posts|reverse %}
