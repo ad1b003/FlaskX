@@ -9,7 +9,7 @@
                 <div class="grid">
                     <button class="pico-background-jade-500" hx-put="{{ url_for('editPost', post_id=post.uuid) }}">Submit</button>
                     <button class="secondary" hx-get="{{ url_for('showPost', post_id=post.uuid) }}">Cancel</button>
-                    <button class="pico-background-red-500 fade-out" hx-confirm="Are you sure?" hx-delete="{{ url_for('deletePost', post_id=post.uuid) }}" hx-swap="outerHTML swap: 1s">Delete Post</button>
+                    <button class="pico-background-red-500 fade-out" hx-confirm="Are you sure?" hx-delete="{{ url_for('deletePost', post_id=post.uuid) }}" hx-swap="outerHTML swap:1s">Delete Post</button>
                 </div>
             </form>
     </article>
