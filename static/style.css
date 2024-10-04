@@ -72,6 +72,11 @@ h1, h2 {
   margin-bottom: 1rem;
 }
 
+.htmx-swapping {
+  opacity: 0;
+  transition: opacity 1s ease-out;
+}
+
 /* https://css.gg/icon/close */
 
 .gg-close {
@@ -84,6 +89,7 @@ h1, h2 {
   border: 2px solid transparent;
   border-radius: 40px;
 }
+
 .gg-close::after,
 .gg-close::before {
   content: "";
@@ -98,11 +104,7 @@ h1, h2 {
   top: 8px;
   left: 1px;
 }
+
 .gg-close::after {
   transform: rotate(-45deg);
-}
-
-.htmx-swapping {
-  opacity: 0;
-  transition: opacity 1s ease-out;
 }
