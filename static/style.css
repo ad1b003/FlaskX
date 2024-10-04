@@ -2,109 +2,116 @@
 @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&family=Permanent+Marker&display=swap');
 
 :root {
-  --pico-font-family-sans-serif: 'Permanent Marker', system-ui, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, Helvetica, Arial, "Helvetica Neue", sans-serif, var(--pico-font-family-emoji);
+    --pico-font-family-sans-serif: 'Permanent Marker', system-ui, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, Helvetica, Arial, "Helvetica Neue", sans-serif, var(--pico-font-family-emoji);
 }
 
 body {
-  font-family: 'Edu AU VIC WA NT Guides', 'Indie Flower', cursive;
+    font-family: 'Edu AU VIC WA NT Guides', 'Indie Flower', cursive;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Indie Flower', cursive;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Indie Flower', cursive;
 }
 
-h1, h2 {
-  font-size: xx-large;
+h1,
+h2 {
+    font-size: xx-large;
 }
 
-.post-title, header {
-  font-family: 'Permanent Marker', 'Indie Flower', cursive;
-  font-size: x-large;
+.post-title,
+header {
+    font-family: 'Permanent Marker', 'Indie Flower', cursive;
+    font-size: x-large;
 }
 
 .post-content {
-  font-family: 'Edu AU VIC WA NT Guides', cursive;
-  font-size: medium;
+    font-family: 'Edu AU VIC WA NT Guides', cursive;
+    font-size: medium;
 }
 
 .flex {
-  display: flex;
+    display: flex;
 }
 
 .column {
-  flex-direction: column;
+    flex-direction: column;
 }
 
 .row {
-  flex-direction: row;
+    flex-direction: row;
 }
 
-.center {
-  justify-content: center;
-  align-items: center;
+.centre {
+    justify-content: center;
+    align-items: center;
 }
 
-.center-h {
-  justify-content: center;
+.centre-h {
+    justify-content: center;
 }
 
-.center-v {
-  align-items: center;
+.centre-v {
+    align-items: center;
 }
 
 .gap-1 {
-  gap: 1rem;
+    gap: 1rem;
 }
 
 .m-1 {
-  margin: 1rem;
+    margin: 1rem;
 }
 
 .mb-1 {
-  margin-bottom: 1rem;
+    margin-bottom: 1rem;
 }
 
 .mt-1 {
-  margin-top: 1rem;
+    margin-top: 1rem;
 }
 
 .children-mb-1>* {
-  margin-bottom: 1rem;
+    margin-bottom: 1rem;
 }
 
-.htmx-swapping {
-  opacity: 0;
-  transition: opacity 1s ease-out;
+.fade-out.htmx-swapping {
+    opacity: 0;
+    transition: opacity 1s ease-out;
 }
 
 /* https://css.gg/icon/close */
 
 .gg-close {
-  box-sizing: border-box;
-  position: relative;
-  display: block;
-  transform: scale(var(--ggs, 1));
-  width: 22px;
-  height: 22px;
-  border: 2px solid transparent;
-  border-radius: 40px;
+    box-sizing: border-box;
+    position: relative;
+    display: block;
+    transform: scale(var(--ggs, 1));
+    width: 22px;
+    height: 22px;
+    border: 2px solid transparent;
+    border-radius: 40px;
 }
 
 .gg-close::after,
 .gg-close::before {
-  content: "";
-  display: block;
-  box-sizing: border-box;
-  position: absolute;
-  width: 16px;
-  height: 2px;
-  background: currentColor;
-  transform: rotate(45deg);
-  border-radius: 5px;
-  top: 8px;
-  left: 1px;
+    content: "";
+    display: block;
+    box-sizing: border-box;
+    position: absolute;
+    width: 16px;
+    height: 2px;
+    background: currentColor;
+    transform: rotate(45deg);
+    border-radius: 5px;
+    top: 8px;
+    left: 1px;
 }
 
 .gg-close::after {
-  transform: rotate(-45deg);
+    transform: rotate(-45deg);
 }
